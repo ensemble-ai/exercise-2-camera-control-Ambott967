@@ -1,5 +1,12 @@
 # Camera Control Exercise
 
+
+## Some comments on my Submission
+
+I set the draw_camera_logic to true by default. But for some reason after switching the camera for the third time this just fails to draw the camera logic
+and no longer has each camera draw by default upon switching. I probably could've figured out why this happens but my 3 remaining brain cells at 4am most definitely could not.
+
+
 ## Description
 
 Your goal is to create several swappable camera control scripts for a top-down terraforming simulator.
