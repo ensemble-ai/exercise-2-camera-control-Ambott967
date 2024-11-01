@@ -4,7 +4,7 @@ extends CameraControllerBase
 
 @export var follow_speed: float = 0.8
 @export var catchup_speed: float = 30
-@export var leash_distance: float = 7
+@export var leash_distance: float = 10
 
 
 var ratio: bool

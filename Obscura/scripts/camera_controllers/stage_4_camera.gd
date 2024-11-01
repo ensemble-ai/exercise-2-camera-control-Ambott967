@@ -2,7 +2,7 @@ class_name Stage4Camera
 extends CameraControllerBase
 
 
-@export var lead_speed: float = 150
+@export var lead_speed: float = 70
 @export var catchup_delay_duration: float = 2
 @export var catchup_speed: float = 150
 @export var leash_distance: float = 7
@@ -34,6 +34,28 @@ func _process(delta: float) -> void:
 	
 	if position.x == target.position.x and position.z == target.position.z:
 		signal_active = false
+	
+	var left_leash = target.position.x - position.x + leash_distance
+	if left_leash < 0:
+		position.x += left_leash
+	elif target.velocity.x > 0:
+		position.x += delta * target.velocity.x + delta * lead_speed
+	var top_leash = target.position.z - position.z + leash_distance
+	if top_leash < 0:
+		position.z += top_leash
+	elif target.velocity.z > 0:
+		position.z += delta * target.velocity.z + delta * lead_speed
+	var right_leash = target.position.x - position.x - leash_distance
+	if right_leash > 0:
+		position.x += right_leash
+	elif target.velocity.x < 0:
+		position.x -= -1 * delta * target.velocity.x + delta * lead_speed
+	var bottom_leash = target.position.z - position.z - leash_distance
+	if bottom_leash > 0:
+		position.z += bottom_leash
+	elif target.velocity.z < 0:
+		position.z -= -1 * delta * target.velocity.z + delta * lead_speed
+	
 	
 	super(delta)
 
